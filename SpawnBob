@@ -1,0 +1,142 @@
+local Players = game:GetService("Players")
+local UserInputService = game:GetService("UserInputService")
+
+local player = Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+
+-- Criar ScreenGui
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "DogzinGui"
+screenGui.ResetOnSpawn = false
+screenGui.Parent = playerGui
+
+-- Criar botão Toggle para abrir/fechar menu
+local toggleButton = Instance.new("TextButton")
+toggleButton.Name = "ToggleButton"
+toggleButton.Text = "Open Menu"
+toggleButton.Size = UDim2.new(0, 100, 0, 40)
+toggleButton.Position = UDim2.new(0, 20, 0, 20)
+toggleButton.BackgroundColor3 = Color3.fromRGB(0, 100, 200)
+toggleButton.TextColor3 = Color3.new(1,1,1)
+toggleButton.Parent = screenGui
+
+-- Criar MainFrame (menu)
+local mainFrame = Instance.new("Frame")
+mainFrame.Name = "MainFrame"
+mainFrame.Size = UDim2.new(0, 300, 0, 250)
+mainFrame.Position = UDim2.new(0, 150, 0, 20)
+mainFrame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+mainFrame.Visible = false
+mainFrame.Parent = screenGui
+
+-- Criar título
+local titleLabel = Instance.new("TextLabel")
+titleLabel.Name = "TitleLabel"
+titleLabel.Size = UDim2.new(1, 0, 0, 50)
+titleLabel.Position = UDim2.new(0, 0, 0, 0)
+titleLabel.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
+titleLabel.Text = "DogzinMenu"
+titleLabel.TextColor3 = Color3.new(1, 1, 1)
+titleLabel.Font = Enum.Font.ArialBold
+titleLabel.TextSize = 24
+titleLabel.Parent = mainFrame
+
+-- Criar ScrollingFrame
+local scrollingFrame = Instance.new("ScrollingFrame")
+scrollingFrame.Name = "ScrollingFrame"
+scrollingFrame.Size = UDim2.new(1, 0, 1, -50)
+scrollingFrame.Position = UDim2.new(0, 0, 0, 50)
+scrollingFrame.CanvasSize = UDim2.new(0, 0, 0, 80) -- tamanho para comportar os elementos
+scrollingFrame.ScrollBarThickness = 6
+scrollingFrame.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+scrollingFrame.Parent = mainFrame
+
+-- Criar botão Spawn Bob dentro do ScrollingFrame
+local spawnBobButton = Instance.new("TextButton")
+spawnBobButton.Name = "SpawnBobButton"
+spawnBobButton.Text = "Spawn Bob"
+spawnBobButton.Size = UDim2.new(0, 280, 0, 50)
+spawnBobButton.Position = UDim2.new(0, 10, 0, 10)
+spawnBobButton.BackgroundColor3 = Color3.fromRGB(0, 100, 200)
+spawnBobButton.TextColor3 = Color3.new(1,1,1)
+spawnBobButton.Font = Enum.Font.ArialBold
+spawnBobButton.TextSize = 22
+spawnBobButton.Parent = scrollingFrame
+
+-- Criar texto explicativo abaixo do botão
+local explanationLabel = Instance.new("TextLabel")
+explanationLabel.Name = "ExplanationLabel"
+explanationLabel.Text = "Esss script spawna o Bob o Tao horrível\nAmedrontador acabador de script\nAperte teleporte 80 vezes"
+explanationLabel.Size = UDim2.new(0, 280, 0, 60)
+explanationLabel.Position = UDim2.new(0, 10, 0, 70)
+explanationLabel.BackgroundTransparency = 1
+explanationLabel.TextColor3 = Color3.new(1,1,1)
+explanationLabel.Font = Enum.Font.Arial
+explanationLabel.TextSize = 16
+explanationLabel.TextWrapped = true
+explanationLabel.TextYAlignment = Enum.TextYAlignment.Top
+explanationLabel.Parent = scrollingFrame
+
+-- Toggle abrir/fechar menu
+toggleButton.MouseButton1Click:Connect(function()
+    mainFrame.Visible = not mainFrame.Visible
+    toggleButton.Text = mainFrame.Visible and "Close Menu" or "Open Menu"
+end)
+
+-- Função arrastar frame
+local dragging = false
+local dragInput, dragStart, startPos
+
+mainFrame.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        dragging = true
+        dragStart = input.Position
+        startPos = mainFrame.Position
+
+        input.Changed:Connect(function()
+            if input.UserInputState == Enum.UserInputState.End then
+                dragging = false
+            end
+        end)
+    end
+end)
+
+mainFrame.InputChanged:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseMovement then
+        dragInput = input
+    end
+end)
+
+UserInputService.InputChanged:Connect(function(input)
+    if dragging and input == dragInput then
+        local delta = input.Position - dragStart
+        mainFrame.Position = UDim2.new(
+            startPos.X.Scale,
+            startPos.X.Offset + delta.X,
+            startPos.Y.Scale,
+            startPos.Y.Offset + delta.Y
+        )
+    end
+end)
+
+-- Função teleportar 80 vezes (chamada pelo botão Spawn Bob)
+spawnBobButton.MouseButton1Click:Connect(function()
+    local character = player.Character
+    if not character then return end
+    local hrp = character:FindFirstChild("HumanoidRootPart")
+    if not hrp then return end
+
+    local directions = {
+        Vector3.new(0, 0, -5), -- frente
+        Vector3.new(5, 0, 0),  -- lado direito
+        Vector3.new(0, 0, 5),  -- trás
+        Vector3.new(0, 5, 0),  -- cima
+        Vector3.new(0, -5, 0), -- baixo
+    }
+
+    for i = 1, 80 do
+        local dir = directions[((i - 1) % 5) + 1]
+        hrp.CFrame = hrp.CFrame + dir
+        wait(0.05)
+    end
+end)
