@@ -1,0 +1,150 @@
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "DogzinX Hub || Version 2.0", HidePremium = false, IntroEnabled = true, IntroText = "T-Rex Hub", SaveConfig = true, ConfigFolder = "V1"})
+
+OrionLib:MakeNotification({
+	Name = "DogzinHub",
+	Content = "Thanks for using DogzinHub!",
+	Image = "rbxassetid://18902665327",
+	Time = 5
+})
+
+local Tab = Window:MakeTab({
+	Name = "Movesets",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Section = Tab:AddSection({
+	Name = "Characters"
+})
+
+local Tab2 = Window:MakeTab({
+	Name = "Player",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Section2 = Tab2:AddSection({
+	Name = "Player Section"
+})
+
+local Tab3 = Window:MakeTab({
+	Name = "Esp / Aimbot",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Section3 = Tab3:AddSection({
+	Name = "Esp / Aimbot"
+})
+
+local Tab4 = Window:MakeTab({
+	Name = "KJ Trolls",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Section4 = Tab4:AddSection({
+	Name = "KJ Troll"
+})
+
+local Tab5 = Window:MakeTab({
+	Name = "Credits",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Section5 = Tab5:AddSection({
+	Name = "Credits"
+})
+
+Tab:AddButton({
+	Name = "Vortex Vanguard",
+	Callback = function()
+          loadstring(game:HttpGet('https://pastebin.com/raw/rfuwSHff'))()
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Gojo",
+	Callback = function()
+      		loadstring(game:HttpGet('https://pastebin.com/raw/Fz5qGQa2'))()
+end
+})
+
+Tab:AddButton({
+	Name = "Mixed Power",
+	Callback = function()
+      		loadstring(game:HttpGet("https://pastebin.com/raw/Y3uyGSK6"))()
+  	end    
+})
+
+Tab2:AddButton({
+	Name = "Infinite Yield",
+	Callback = function()
+      		loadstring(game:HttpGet(('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'),true))()
+  	end    
+})
+
+Tab4:AddButton({
+	Name = "Saitama To KJ",
+	Callback = function()
+      		loadstring(game:HttpGet"https://pastebin.com/raw/PrVwDfUs")()
+  	end    
+})
+
+Tab3:AddButton({
+	Name = "Universal Outline Esp",
+	Callback = function()
+      		loadstring(game:HttpGet("https://raw.githubusercontent.com/1dontgiveaf/NSExpression/main/Outline%20ESP", true))()
+  	end    
+})
+
+Tab3:AddButton({
+	Name = "Aimbot",
+	Callback = function()
+      		loadstring(game:HttpGet('https://gist.githubusercontent.com/pleaseful/340594344eb73891941d2d01af742618/raw/94063ac38cbda5f382675ca949db75f6cc683fd8/Aimmerz%2520V2.lua'))()
+  	end    
+})
+
+Tab4:AddButton({
+	Name = "KJ Five Seasons",
+	Callback = function()
+      		loadstring(game:HttpGet("https://raw.githubusercontent.com/AlperPro/shhh/main/Five%20Seasons.lua"))()
+  	end    
+})
+
+Tab2:AddButton({
+	Name = "Auto Combo || Lockerv5",
+	Callback = function()
+      		loadstring(game:HttpGet("https://rentry.org/autocombo/raw"))()
+  	end    
+})
+
+Tab2:AddButton({
+	Name = "Character Customizer",
+	Callback = function()
+      		loadstring(game:HttpGet('https://raw.githubusercontent.com/xVicity/BURNED/main/LATEST.lua'))() 
+  	end    
+})
+
+Tab2:AddButton({
+	Name = "Boost Speed",
+	Callback = function()
+      		local player = game.Players.LocalPlayer
+            local character = player.Character or player.CharacterAdded:Wait()
+            
+            local function speed()
+                    local humanoid = character:WaitForChild("Humanoid")
+                    if humanoid then
+                               humanoid.WalkSpeed = humanoid.WalkSpeed + 5
+                        end
+            end
+
+            speed()
+  	end    
+})
+
+Tab5:AddLabel("Script Owner: Insight Matrix 360")
+Tab5:AddLabel("Credits to NetlessKJ")
+Tab5:AddLabel("Credits to Lockerv5")
