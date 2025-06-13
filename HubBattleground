@@ -1,6 +1,6 @@
 if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7449423635 then
     game.StarterGui:SetCore("SendNotification", {
-      Icon = "rbxassetid://9152775759";
+      Icon = "rbxassetid://102592960895375";
           Title = "DOGZIN", 
       Text = "Welcome Dogzin"
   })
@@ -8,7 +8,7 @@ if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7
   wait(1)
   
   game.StarterGui:SetCore("SendNotification", {
-      Icon = "rbxassetid://9152775759";
+      Icon = "rbxassetid://102592960895375";
       Title = "DOGZIN", 
       Text = "Loading Ui..."
   })
@@ -32,7 +32,7 @@ if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7
       wait(1)
       
       do
-          local ui = game.CoreGui:FindFirstChild("PROXOGUI")
+          local ui = game.CoreGui:FindFirstChild("DOGZINGUI")
           if ui then
               ui:Destroy()
           end
@@ -449,7 +449,7 @@ if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7
                   Toggle.AutoButtonColor = false
                   Toggle.Size = UDim2.new(0, 455, 0, 30)
                   Toggle.Font = Enum.Font.SourceSans
-                  Toggle.Text = ""
+                  Toggle.Text = "DG"
                   Toggle.TextColor3 = Color3.fromRGB(0, 0, 0)
                   Toggle.TextSize = 14.000
                   
